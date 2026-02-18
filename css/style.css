@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-font-family: Arial, Helvetica, sans-serif;}
+}
 
 /* ========== لافتة تثبيت التطبيق ========== */
 .install-banner {
@@ -133,6 +133,8 @@ body {
     background: linear-gradient(145deg, #f8f5f0 0%, #e6ddd2 100%);
     min-height: 100vh;
     direction: rtl;
+    font-family: 'Amiri', serif;
+    line-height: 1.6;
 }
 
 /* ========== النافبار العلوية ========== */
@@ -185,9 +187,10 @@ body {
     text-decoration: none;
     font-size: 1.7rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0;
     color: #faeac6;
     text-shadow: 2px 2px 0 #2d5e4a;
+    font-family: 'Amiri', serif;
 }
 
 .logo-text span {
@@ -275,10 +278,12 @@ body {
 .date-time-box {
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
     background: #dbcaa7;
     padding: 0.5rem 1.8rem;
     border-radius: 50px;
     box-shadow: inset 0 2px 5px #706547, 0 3px 5px #00000020;
+    max-width: 100%;
 }
 
 .gregorian, .hijri {
@@ -286,6 +291,8 @@ body {
     align-items: center;
     gap: 6px;
     font-size: 1.2rem;
+    min-width: 0;
+    white-space: nowrap;
 }
 
 .gregorian i, .hijri i {
@@ -317,6 +324,8 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 .maghrib-countdown i {
@@ -334,6 +343,9 @@ body {
     display: inline-block;
     min-width: 110px;
     text-align: center;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-feature-settings: "tnum";
+            font-feature-settings: "tnum";
 }
 
 .content-placeholder {
@@ -426,6 +438,7 @@ body {
 }
 
 .cards-container {
+    margin: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -451,7 +464,7 @@ body {
 /* تأثير بسيط عند رفع الماوس (اختياري) */
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 25px 40px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 25px 40px rgba(27, 59, 63, 0.3);
 }
 
 /* أيقونة البطاقة */
@@ -518,7 +531,7 @@ body {
 /* تأثير hover للزر (مهم لتحسين تجربة المستخدم) */
 .card-btn:hover {
     background: #c9a05e;
-    color: #ffffff;
+    color: #e2ecee;
     border-color: #1b3b3f;
     gap: 15px;
 }
@@ -627,10 +640,6 @@ body {
         font-size: 1.8rem;
     }
 }
-
-
-
-
 
 
 /* ========== قسم المصادقة (تسجيل الدخول وإنشاء الحساب) ========== */

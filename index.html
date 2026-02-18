@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خطوات المسلم · واجهة إسلامية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+    
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -29,11 +30,16 @@
                 <li><a href="azkar.html"><i class="fas fa-shield-alt"></i> اذكار المسلم</a></li>
                 <li><a href="challenge.html"><i class="fas fa-calendar-alt"></i> تحدي 30 يوم</a></li>
                 <li><a href="#about-us-section"><i class="fas fa-users"></i> من نحن؟</a></li>
-                <li>
-                    <a href="javascript:void(0)" onclick="handleLogout()" style="color: #ff4d4d; font-size: 0.8rem; border: 1px solid #ff4d4d; padding: 3px 8px; border-radius: 4px; display: inline-block;">
-                        <i class="fas fa-sign-out-alt"></i> خروج
-                    </a>
-                </li>
+                <li id="loginLink">
+    <a href="auth.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</a>
+</li>
+
+<li id="logoutLink" style="display: none;">
+    <a href="javascript:void(0)" onclick="handleLogout()" style="color: #ff4d4d;">
+        <i class="fas fa-sign-out-alt"></i> خروج
+    </a>
+</li>
+                
                 
             </ul>
         </div>
@@ -63,34 +69,38 @@
             </div>
         </div>
     </div>
-    <div class="main-content">
-        <h1 class="page-title">مرحباً بك في خطوات المسلم</h1>
-        <p class="page-subtitle">اختر ما تريد بدء رحلتك الإيمانية</p>
+ <div class="cards-container">
+            <!-- البطاقة الأولى: ختم القرآن -->
             <div class="card card-1">
                 <div class="card-icon">
                     <i class="fas fa-quran"></i>
                 </div>
                 <h2 class="card-title">ختم القرآن</h2>
                 <p class="card-description">
-خطط لختم مصحفك بيسر؛ حددأهدافك واحصل على جدول يومي مخصص يرافقك طوال الشهر الفضيل                </p>
+                    رحلة مع كتاب الله، تلاوة وتدبراً. اقرأ وارتق ورتل القرآن ترتيلاً.
+                </p>
                 <a href="quran.html" class="card-btn">
                     <span>الضغط لختم القرآن</span>
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
+
+            <!-- البطاقة الثانية: حصن المسلم -->
             <div class="card card-2">
                 <div class="card-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <h2 class="card-title">اذكار المسلم</h2>
+                <h2 class="card-title">حصن المسلم</h2>
                 <p class="card-description">
-                    اذكار المسلم من السنة الصحيحة. اذكار نفسك بالذكر والدعاء المأثور.
+                    اذكار المسلم من السنة الصحيحة. حصن نفسك بالذكر والدعاء المأثور.
                 </p>
                 <a href="azkar.html" class="card-btn">
                     <span>الضغط للذكر</span>
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
+
+            <!-- البطاقة الثالثة: تحدي 30 يوم -->
             <div class="card card-3">
                 <div class="card-icon">
                     <i class="fas fa-calendar-check"></i>
@@ -105,14 +115,29 @@
                 </a>
             </div>
         </div>
+    </div>>
     </div>
 
- <h1 class="about-title" id="about-us-section">من نحن؟</h1>
+<!-- ========== صفحة من نحن؟ ========== -->
+    <div class="about-container">
         <div class="about-card">
+            <!-- الصورة الدائرية -->
             <div class="profile-image">
+                <img src="images/about me.png" alt="Yassine Zouiche">
+            </div>
+            
+            <!-- الاسم -->
+            <h1 class="profile-name">yassine zouiche</h1>
+            
+            <!-- التخصص -->
+            <h2 class="profile-title">full stack multi platform developer</h2>
+            
+            <!-- النص الكامل -->
             <div class="profile-text">
                 <p>
                     أنا شاب مسلم سني أحب التقنية وأسعى لتوظيفها في خدمة ديني وأمتي.
+                </p>
+                <p>
                     أنشأت "خطوات المسلم" ليكون رفيقًا يوميًا يعيننا على الطاعة ويذكرنا بالله في زحمة الحياة.
                 </p>
                 <p>
@@ -122,7 +147,7 @@
                     إن أصبت فمن الله، وإن أخطأت فمن نفسي.
                 </p>
                 <p class="dua">
-                    🤲 لا تنسوني  من دعوة صالحة بظهر الغيب ،و ان تدعو الله ان يرحم ابي ، ويجعل هذا العمل صدقة جارية لنا.
+                    🤲 لا تنسوني ووالدي من دعوة صالحة بظهر الغيب، أن يرحمنا الله ويغفر لنا ويجعل هذا العمل صدقة جارية لنا.
                 </p>
             </div>
         </div>
@@ -199,6 +224,6 @@
 <script src="js/auth.js"></script>
 <script src="js/install-app.js"></script>
 
-<script src="app.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
