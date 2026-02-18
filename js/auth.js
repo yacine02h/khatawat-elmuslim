@@ -1,4 +1,3 @@
-// 1. بيانات الربط التي وجدتها يا ياسين
 const supabaseUrl = 'https://yyzhoblvziqtsixvyafk.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5emhvYmx2emlxdHNpeHZ5YWZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5MjA1MDcsImV4cCI6MjA4NjQ5NjUwN30.mbdSlbg6gDHBZ3FRyzK0SticDT7k7cVRmYVGamhwwA4';
 
@@ -42,7 +41,7 @@ async function register() {
     }
 }
 
-// 4. دالة تسجيل الدخول (التي سألت عنها)
+
 async function login() {
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-pass').value;

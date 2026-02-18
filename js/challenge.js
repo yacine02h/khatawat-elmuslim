@@ -1,4 +1,3 @@
-// مصفوفة التحديات الـ 30
 const challenges = [
     {
         id: 1,
@@ -246,31 +245,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (h && !Number.isNaN(h)) {
         renderChallengeForDay(h);
-    } else {
-        window.addEventListener('hijriDayReady', (e) => {
-            const d = e && e.detail && e.detail.day ? e.detail.day : 1;
-            renderChallengeForDay(d);
-        }, { once: true });
     }
+    
+    // الاستماع دائماً للتحديث لضمان التزامن مع API
+    window.addEventListener('hijriDayReady', (e) => {
+        const d = e && e.detail && e.detail.day ? e.detail.day : 1;
+        // إذا كان اليوم الجديد مختلفاً عن المعروض حالياً، نحدث الصفحة
+        if (d !== h) {
+            renderChallengeForDay(d);
+        }
+    });
 });
 
-// دالة إتمام التحدي
 function completeChallenge() {
     const btn = document.getElementById('doneBtn');
     
-    // تغيير شكل الزر
     btn.innerHTML = '<i class="fas fa-check-double"></i> تقبل الله منك!';
     btn.classList.add('completed');
     btn.style.backgroundColor = '#28a745';
     
-    // إطلاق الاحتفال (Confetti)
     fireConfetti();
-    
-    // حفظ الإنجاز مؤقتاً (اختياري، لعدم ضياعه عند التحديث البسيط)
-    // لكن المستخدم طلب "لا قاعدة بيانات"، سنكتفي بالتأثير البصري اللحظي
 }
 
-// دالة القصاصات الورقية (Confetti)
 function fireConfetti() {
     if (typeof confetti === 'function') {
         var duration = 3 * 1000;
@@ -289,7 +285,6 @@ function fireConfetti() {
           }
 
           var particleCount = 50 * (timeLeft / duration);
-          // since particles fall down, start a bit higher than random
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 } }));
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 } }));
         }, 250);

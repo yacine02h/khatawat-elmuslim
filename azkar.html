@@ -32,23 +32,17 @@
                 <li><a href="azkar.html"><i class="fas fa-shield-alt"></i> اذكار المسلم</a></li>
                 <li><a href="challenge.html"><i class="fas fa-calendar-alt"></i> تحدي 30 يوم</a></li>
                 <li><a href="index.html#about-us-section"><i class="fas fa-users"></i> من نحن؟</a></li>
-                <!-- الرابط الجديد: الملف الشخصي (تم تصحيح البنية) -->
                 <li><a href="auth.html" id="profileLink" class="nav-item"><i class="fas fa-user-circle"></i> الملف الشخصي</a></li>
-                <!-- زر الخروج (تم وضعه داخل <li> وتعديل التصميم) -->
                 <li>
                     <a href="javascript:void(0)" onclick="handleLogout()" style="color: #ff4d4d; font-size: 0.8rem; border: 1px solid #ff4d4d; padding: 3px 8px; border-radius: 4px; display: inline-block;">
                         <i class="fas fa-sign-out-alt"></i> خروج
                     </a>
                 </li>
-                
             </ul>
         </div>
     </nav>
-
-    <!-- تحت النافبار مباشرة: التاريخ / الوقت / أحرف عادية / وقت المغرب -->
     <div class="info-strip">
         <div class="info-grid">
-            <!-- حاوية التاريخ (ميلادي + هجري) والتوقيت -->
             <div class="date-time-box">
                 <div class="gregorian" id="gregorianDisplay">
                     <i class="fas fa-calendar"></i>
@@ -64,8 +58,6 @@
                 </div>
             </div>
 
-        
-            <!-- العد التنازلي للمغرب -->
             <div class="maghrib-countdown">
                 <i class="fas fa-sunset"></i>
               <span>الوقت المتبقي لأذان المغرب: <span id="maghrib-time">--:--</span></span>
@@ -81,12 +73,8 @@
 
 
 
-    <!-- حاوية الأذكار -->
     <div id="azkar-container" class="azkar-container">
-        <!-- سيتم ملء الأذكار هنا بواسطة JavaScript -->
     </div>
-
-    <!-- دقة الخط العربي (Amiri) عبر Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">

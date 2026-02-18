@@ -1,17 +1,13 @@
-// ننتظر تحميل الصفحة بالكامل لضمان عمل النافبار والمزامنة
 document.addEventListener('DOMContentLoaded', async function() {
 
-    // ---------- 1. المتغيرات والأساسيات ----------
-    let maghribTimeStr = ""; // تخزين وقت المغرب من الـ API
+    let maghribTimeStr = "";
 
-    // دالة مساعدة لتحويل الأرقام العربية إلى إنجليزية
     function convertArabicNumeralsToEnglish(str) {
         const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
         const englishNumerals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
         return str.replace(/[٠-٩]/g, (d) => englishNumerals[arabicNumerals.indexOf(d)]);
     }
 
-    // ---------- 2. النافبار (الهامبرغر) ----------
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     if (menuToggle && navLinks) {
@@ -20,63 +16,88 @@ document.addEventListener('DOMContentLoaded', async function() {
         };
     }
 
-    // ---------- 4. نظام وقت الأذان الذكي ----------
     async function initPrayerTimes() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => fetchPrayerData(pos.coords.latitude, pos.coords.longitude),
-                () => fetchPrayerData(35.69, -0.63) // وهران كافتراضي
-            );
-        } else {
-            fetchPrayerData(35.69, -0.63);
+        const CACHE_KEY = 'prayer_times_cache_v10_hijri_pure_api';
+        const todayStr = new Date().toDateString();
+
+        let prayerData = null;
+
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                const parsed = JSON.parse(cached);
+                if (parsed.date === todayStr && parsed.data) {
+                    console.log("Using cached prayer data");
+                    prayerData = parsed.data;
+                }
+            }
+        } catch (e) {
+            console.error("Cache error:", e);
+        }
+
+        if (!prayerData) {
+            try {
+                const city = 'Oran';
+                const country = 'Algeria';
+                const method = 3; 
+                const adjustment = -1; 
+
+                console.log(`Fetching prayer times for ${city}, ${country} with adjustment ${adjustment}...`);
+
+                const response = await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=${method}&adjustment=${adjustment}`);
+                const json = await response.json();
+                
+                console.log("API Response:", json);
+
+                if (json.code === 200 && json.data) {
+                    prayerData = json.data;
+                    localStorage.setItem(CACHE_KEY, JSON.stringify({
+                        date: todayStr,
+                        data: prayerData
+                    }));
+                }
+            } catch (err) {
+                console.error("Failed to fetch prayer times:", err);
+            }
+        }
+
+        if (prayerData) {
+            updateUI(prayerData);
         }
     }
 
-    async function fetchPrayerData(lat, lon) {
-        try {
-            const date = new Date();
-            const dateStr = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-            
-            // نستخدم adjustment=-1 لمحاولة التصحيح من المصدر
-            const res = await fetch(`https://api.aladhan.com/v1/timings/${dateStr}?latitude=${lat}&longitude=${lon}&method=3&adjustment=-1`);
-            const json = await res.json();
-            const data = json.data;
-
+    function updateUI(data) {
+        if (data.timings) {
             maghribTimeStr = convertArabicNumeralsToEnglish(data.timings.Maghrib);
             const maghribElem = document.getElementById('maghrib-time');
             if (maghribElem) maghribElem.innerText = maghribTimeStr;
-            
-            // تحديث التاريخ الهجري مع تصحيح يدوي خاص (1 رمضان -> 30 شعبان) ومعالجة أرقام عربية
-            if(document.getElementById('hijri-date')) {
-                const rawDay = String(data.date.hijri.day);
-                let hDay = parseInt(convertArabicNumeralsToEnglish(rawDay), 10);
-                let hMonth = data.date.hijri.month.ar; 
-                let hYear = convertArabicNumeralsToEnglish(String(data.date.hijri.year));
+        }
 
-                // إزاحة خاصة للجزائر: -1 يوم
-                const hijriOffsetDays = -1;
-                if (hijriOffsetDays === -1) {
-                    if (hMonth.includes('رمضان') && hDay === 1) {
-                        hDay = 30;
-                        hMonth = 'شعبان';
-                    } else if (!Number.isNaN(hDay) && hDay > 1) {
-                        hDay = hDay - 1;
-                    }
-                } 
-                
-                window.__HIJRI_DAY = hDay;
-                try { localStorage.setItem('hijri_day', String(hDay)); } catch (e) {}
-                try { window.dispatchEvent(new CustomEvent('hijriDayReady', { detail: { day: hDay, month: hMonth, year: hYear } })); } catch (e) {}
-                
-                document.getElementById('hijri-date').innerText = `${hDay} ${hMonth} ${hYear} هـ`;
-            }
+        if (data.date && data.date.hijri) {
+            const hijri = data.date.hijri;
+            let hDay = parseInt(convertArabicNumeralsToEnglish(String(hijri.day)), 10);
+            const hMonth = hijri.month.ar;
+            const hYear = convertArabicNumeralsToEnglish(String(hijri.year));
 
-            if(document.getElementById('gregorianDisplay')) {
-                const arabicGregorianDate = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                const englishNumberedGregorianDate = convertArabicNumeralsToEnglish(arabicGregorianDate);
-                document.getElementById('gregorianDisplay').innerHTML = `<i class="fas fa-calendar"></i><span>${englishNumberedGregorianDate}</span>`;
+            window.__HIJRI_DAY = hDay;
+            localStorage.setItem('hijri_day', String(hDay));
+
+            window.dispatchEvent(new CustomEvent('hijriDayReady', { 
+                detail: { day: hDay, month: hMonth, year: hYear } 
+            }));
+
+            const hijriElem = document.getElementById('hijri-date');
+            if (hijriElem) {
+                hijriElem.innerText = `${hDay} ${hMonth} ${hYear} هـ`;
             }
-        } catch (err) { console.error("خطأ في جلب المواقيت:", err); }
+        }
+
+        const gregorianElem = document.getElementById('gregorianDisplay');
+        if (gregorianElem) {
+            const arabicGregorianDate = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            const englishNumberedGregorianDate = convertArabicNumeralsToEnglish(arabicGregorianDate);
+            gregorianElem.innerHTML = `<i class="fas fa-calendar"></i><span>${englishNumberedGregorianDate}</span>`;
+        }
     }
 
     function updateEverySecond() {
@@ -103,7 +124,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    // تشغيل محرك الوقت
     initPrayerTimes();
     setInterval(updateEverySecond, 1000);
 });

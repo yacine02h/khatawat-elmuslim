@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("خطأ: _supabase غير معرف. راجع ترتيب الملفات في الـ HTML.");
     }
 
-    // 2. التحقق من الذاكرة المحلية (التي حدثها السحاب أعلاه) لمنع ظهور الأسئلة
     const savedKhatmas = localStorage.getItem('user_khatmas');
     const savedSessions = localStorage.getItem('user_sessions');
     const savedDays = localStorage.getItem('user_days'); 

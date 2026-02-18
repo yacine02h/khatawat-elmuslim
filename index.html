@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خطوات المسلم · واجهة إسلامية</title>
-    <!-- Font Awesome 6 (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- بداية النافبار -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo-area">
@@ -21,7 +19,6 @@
                 <div class="logo-text">
 <a href="index.html">خطوات المسلم
 </a>                </div>
-                <!-- زر القائمة للموبايل -->
                 <div class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -32,9 +29,6 @@
                 <li><a href="azkar.html"><i class="fas fa-shield-alt"></i> اذكار المسلم</a></li>
                 <li><a href="challenge.html"><i class="fas fa-calendar-alt"></i> تحدي 30 يوم</a></li>
                 <li><a href="#about-us-section"><i class="fas fa-users"></i> من نحن؟</a></li>
-                <!-- الرابط الجديد: الملف الشخصي (تم تصحيح البنية) -->
-                <li><a href="auth.html" id="profileLink" class="nav-item"><i class="fas fa-user-circle"></i> الملف الشخصي</a></li>
-                <!-- زر الخروج (تم وضعه داخل <li> وتعديل التصميم) -->
                 <li>
                     <a href="javascript:void(0)" onclick="handleLogout()" style="color: #ff4d4d; font-size: 0.8rem; border: 1px solid #ff4d4d; padding: 3px 8px; border-radius: 4px; display: inline-block;">
                         <i class="fas fa-sign-out-alt"></i> خروج
@@ -45,10 +39,8 @@
         </div>
     </nav>
 
-    <!-- تحت النافبار مباشرة: التاريخ / الوقت / أحرف عادية / وقت المغرب -->
     <div class="info-strip">
         <div class="info-grid">
-            <!-- حاوية التاريخ (ميلادي + هجري) والتوقيت -->
             <div class="date-time-box">
                 <div class="gregorian" id="gregorianDisplay">
                     <i class="fas fa-calendar"></i>
@@ -64,8 +56,6 @@
                 </div>
             </div>
 
-        
-            <!-- العد التنازلي للمغرب -->
             <div class="maghrib-countdown">
                 <i class="fas fa-sunset"></i>
               <span>الوقت المتبقي لأذان المغرب: <span id="maghrib-time">--:--</span></span>
@@ -73,15 +63,9 @@
             </div>
         </div>
     </div>
-
-
-        <!-- ========== المحتوى الرئيسي: 3 بطاقات ========== -->
     <div class="main-content">
         <h1 class="page-title">مرحباً بك في خطوات المسلم</h1>
         <p class="page-subtitle">اختر ما تريد بدء رحلتك الإيمانية</p>
-        
-        <div class="cards-container">
-            <!-- البطاقة الأولى: ختم القرآن -->
             <div class="card card-1">
                 <div class="card-icon">
                     <i class="fas fa-quran"></i>
@@ -94,8 +78,6 @@
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
-
-            <!-- البطاقة الثانية: اذكار المسلم -->
             <div class="card card-2">
                 <div class="card-icon">
                     <i class="fas fa-shield-alt"></i>
@@ -109,8 +91,6 @@
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
-
-            <!-- البطاقة الثالثة: تحدي 30 يوم -->
             <div class="card card-3">
                 <div class="card-icon">
                     <i class="fas fa-calendar-check"></i>
@@ -127,32 +107,12 @@
         </div>
     </div>
 
-
-
-
  <h1 class="about-title" id="about-us-section">من نحن؟</h1>
-
-
- <!-- ========== صفحة من نحن؟ ========== -->
-    <div class="about-container">
         <div class="about-card">
-            <!-- الصورة الدائرية -->
             <div class="profile-image">
-                <img src="images/about me.png">
-            </div>
-            
-            <!-- الاسم -->
-            <h1 class="profile-name">yassine zouiche</h1>
-            
-            <!-- التخصص -->
-            <h2 class="profile-title">full stack multi platform developer</h2>
-            
-            <!-- النص الكامل -->
             <div class="profile-text">
                 <p>
                     أنا شاب مسلم سني أحب التقنية وأسعى لتوظيفها في خدمة ديني وأمتي.
-                </p>
-                <p>
                     أنشأت "خطوات المسلم" ليكون رفيقًا يوميًا يعيننا على الطاعة ويذكرنا بالله في زحمة الحياة.
                 </p>
                 <p>
@@ -168,11 +128,8 @@
         </div>
     </div>
 
-
-    <!-- ========== الفوتر (التذييل) ========== -->
     <footer class="footer">
         <div class="footer-container">
-            <!-- قسم الشعار والوصف -->
             <div class="footer-section footer-about">
                 <div class="footer-logo">
                     <i class="fas fa-mosque"></i>
@@ -183,7 +140,6 @@
                 </p>
             </div>
 
-            <!-- قسم روابط سريعة -->
             <div class="footer-section footer-links">
                 <h3 class="footer-title">روابط سريعة</h3>
                 <ul>
@@ -195,9 +151,6 @@
                 </ul>
             </div>
 
-            <!-- قسم التواصل الاجتماعي -->
-            <div class="footer-section footer-social">
-                <h3 class="footer-title">تواصل معنا</h3>
                 <div class="social-icons">
           
                     <a href="https://www.instagram.com/yassine_zouiche/?__pwa=1" class="social-icon" title="انستغرام"><i class="fab fa-instagram"></i></a>
@@ -205,14 +158,9 @@
                     <a href="https://wa.me/213561545976" class="social-icon" title="واتساب"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://www.youtube.com/@brandtdzeri" class="social-icon" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a>
                 </div>
-             
             </div>
-
-          
-
       
 
-    <!-- دقة الخط العربي (Amiri) عبر Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -228,7 +176,6 @@
 </script>
 
 
-    <!-- PWA Install Banner -->
     <div id="install-banner" class="install-banner" style="display: none;">
         <div class="install-content">
             <div class="install-icon">
