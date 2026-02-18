@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطوات المسلم · واجهة إسلامية</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- بداية النافبار -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-area">
+                <div class="islamic-logo">
+                    <i class="fas fa-mosque"></i>
+                </div>
+                <div class="logo-text">
+<a href="index.html">خطوات المسلم
+</a>                </div>
+                <!-- زر القائمة للموبايل -->
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="quran.html"><i class="fas fa-quran"></i> ختم القران</a></li>
+                <li><a href="azkar.html"><i class="fas fa-shield-alt"></i> اذكار المسلم</a></li>
+                <li><a href="challenge.html"><i class="fas fa-calendar-alt"></i> تحدي 30 يوم</a></li>
+                <li><a href="index.html#about-us-section"><i class="fas fa-users"></i> من نحن؟</a></li>
+                <!-- الرابط الجديد: الملف الشخصي (تم تصحيح البنية) -->
+                <li><a href="auth.html" id="profileLink" class="nav-item"><i class="fas fa-user-circle"></i> الملف الشخصي</a></li>
+                <!-- زر الخروج (تم وضعه داخل <li> وتعديل التصميم) -->
+                <li>
+                    <a href="javascript:void(0)" onclick="handleLogout()" style="color: #ff4d4d; font-size: 0.8rem; border: 1px solid #ff4d4d; padding: 3px 8px; border-radius: 4px; display: inline-block;">
+                        <i class="fas fa-sign-out-alt"></i> خروج
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <!-- تحت النافبار مباشرة: التاريخ / الوقت / أحرف عادية / وقت المغرب -->
+    <div class="info-strip">
+        <div class="info-grid">
+            <!-- حاوية التاريخ (ميلادي + هجري) والتوقيت -->
+            <div class="date-time-box">
+                <div class="gregorian" id="gregorianDisplay">
+                    <i class="fas fa-calendar"></i>
+                    <span></span>
+                </div>
+                <div class="hijri" id="hijriDisplay">
+                    <i class="fas fa-moon"></i>
+                    <span id="hijri-date"></span>
+                </div>
+                <div class="gregorian" style="border-right: 2px solid #a47148; padding-right: 15px;">
+                    <i class="fas fa-clock"></i>
+                    <span id="liveTime">10:45:23</span>
+                </div>
+            </div>
+
+        
+            <!-- العد التنازلي للمغرب -->
+            <div class="maghrib-countdown">
+                <i class="fas fa-sunset"></i>
+              <span>الوقت المتبقي لأذان المغرب: <span id="maghrib-time">--:--</span></span>
+<span id="countdown-timer">00:00:00</span>
+            </div>
+        </div>
+    </div>
+
+
+
+<div id="setup-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3><i class="fas fa-quran"></i> ضبط خطة الختمة</h3>
+        
+        <div class="input-group">
+            <label>كم ختمة تريد أن تختم في هذا الشهر؟</label>
+            <input type="number" id="target-khatma" min="1" value="1">
+        </div>
+<div class="input-group">
+    <label>كم يوماً تنوي القراءة خلالها؟ (مثلاً: 30 لشهر كامل)</label>
+    <input type="number" id="target-days" min="1" max="30" value="30">
+</div>
+        <div class="input-group">
+            <label>كم مرة تقرأ القرآن في اليوم (عدد الجلسات)؟</label>
+            <input type="number" id="daily-sessions" min="1" max="20" value="5">
+        </div>
+
+        <button onclick="calculatePlan()" class="start-btn">ابدأ التحدي</button>
+    </div>
+</div>
+
+<div id="plan-result" class="result-card" style="display: none;">
+    <div class="info-box">
+        <p id="calc-text"></p>
+        <button onclick="showSetup()" class="edit-btn"><i class="fas fa-edit"></i> تعديل الخطة</button>
+    </div>
+</div>
+
+
+
+<div id="days-grid-container" style="display: none;">
+    <h4 class="grid-title">مسار الختمة - 30 يوماً</h4>
+    <div id="quran-grid" class="quran-grid">
+        </div>
+</div>
+
+
+
+
+<div id="days-grid" class="days-grid"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- دقة الخط العربي (Amiri) عبر Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="js/auth.js"></script>
+<script src="app.js"></script>
+
+<script src="js/quran.js"></script>
+</body>
+</html>

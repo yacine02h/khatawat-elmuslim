@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطوات المسلم · واجهة إسلامية</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- بداية النافبار -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-area">
+                <div class="islamic-logo">
+                    <i class="fas fa-mosque"></i>
+                </div>
+                <div class="logo-text">
+<a href="index.html">خطوات المسلم
+</a>                </div>
+                <!-- زر القائمة للموبايل -->
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="quran.html"><i class="fas fa-quran"></i> ختم القران</a></li>
+                <li><a href="azkar.html"><i class="fas fa-shield-alt"></i> اذكار المسلم</a></li>
+                <li><a href="challenge.html"><i class="fas fa-calendar-alt"></i> تحدي 30 يوم</a></li>
+                <li><a href="index.html#about-us-section"><i class="fas fa-users"></i> من نحن؟</a></li>
+                <!-- الرابط الجديد: الملف الشخصي (تم تصحيح البنية) -->
+                <li><a href="auth.html" id="profileLink" class="nav-item"><i class="fas fa-user-circle"></i> الملف الشخصي</a></li>
+                <!-- زر الخروج (تم وضعه داخل <li> وتعديل التصميم) -->
+                <li>
+                    <a href="javascript:void(0)" onclick="handleLogout()" style="color: #ff4d4d; font-size: 0.8rem; border: 1px solid #ff4d4d; padding: 3px 8px; border-radius: 4px; display: inline-block;">
+                        <i class="fas fa-sign-out-alt"></i> خروج
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <!-- تحت النافبار مباشرة: التاريخ / الوقت / أحرف عادية / وقت المغرب -->
+    <div class="info-strip">
+        <div class="info-grid">
+            <!-- حاوية التاريخ (ميلادي + هجري) والتوقيت -->
+            <div class="date-time-box">
+                <div class="gregorian" id="gregorianDisplay">
+                    <i class="fas fa-calendar"></i>
+                    <span></span>
+                </div>
+                <div class="hijri" id="hijriDisplay">
+                    <i class="fas fa-moon"></i>
+                    <span id="hijri-date"></span>
+                </div>
+                <div class="gregorian" style="border-right: 2px solid #a47148; padding-right: 15px;">
+                    <i class="fas fa-clock"></i>
+                    <span id="liveTime">10:45:23</span>
+                </div>
+            </div>
+
+        
+            <!-- العد التنازلي للمغرب -->
+            <div class="maghrib-countdown">
+                <i class="fas fa-sunset"></i>
+              <span>الوقت المتبقي لأذان المغرب: <span id="maghrib-time">--:--</span></span>
+<span id="countdown-timer">00:00:00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- حاوية التحدي -->
+    <div class="challenge-container">
+        <div id="challenge-content" class="challenge-card">
+            <!-- سيتم ملء المحتوى هنا بواسطة JavaScript -->
+            <p>جاري تحميل تحدي اليوم...</p>
+        </div>
+    </div>
+
+
+      
+
+    <!-- دقة الخط العربي (Amiri) عبر Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/challenge.css">
+    
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="js/auth.js"></script>
+<script src="js/challenge.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

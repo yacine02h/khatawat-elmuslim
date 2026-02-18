@@ -1,0 +1,160 @@
+/* إعدادات عامة */
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Kufi Arabic', sans-serif; /* الخط الافتراضي للعناوين */
+}
+
+/* استيراد الخطوط */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap');
+
+/* حاوية التحدي */
+.challenge-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* ارتفاع مناسب للشاشة */
+    padding: 2rem;
+}
+
+/* بطاقة التحدي */
+.challenge-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+}
+
+/* عنوان التحدي */
+.challenge-title {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    color: #1e5631; /* لون أخضر إسلامي */
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 1rem;
+}
+
+/* أيقونة اليوم */
+.day-badge {
+    background: #d4edda;
+    color: #155724;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* الشرح */
+.challenge-desc {
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* الدليل الشرعي */
+.challenge-evidence {
+    background: #fafafa;
+    border-right: 4px solid #c3e6cb;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    text-align: right;
+    border-radius: 8px;
+}
+
+.evidence-text {
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    color: #555;
+    font-style: italic;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.evidence-source {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+    display: block;
+}
+
+/* زر الإنجاز */
+.done-btn {
+    background: linear-gradient(135deg, #1e5631 0%, #4caf50 100%);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.done-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(30, 86, 49, 0.4);
+}
+
+.done-btn:active {
+    transform: scale(0.95);
+}
+
+.done-btn.completed {
+    background: #28a745;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* تأثير الاحتفال */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* التجاوب */
+@media (max-width: 600px) {
+    .challenge-card {
+        padding: 1.5rem;
+    }
+    
+    .challenge-title {
+        font-size: 1.5rem;
+    }
+    
+    .challenge-desc {
+        font-size: 1.2rem;
+    }
+    
+    .done-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
